@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Mini Input</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body { font-family: Arial, sans-serif; padding: 1rem; }
+    #todos { margin-top: 1rem; }
+    li { margin: 0.25rem 0; }
+  </style>
+</head>
+<body>
+  <h1>Kleiner Input</h1>
+  <input id="todoInput" type="text" placeholder="Neues Todo..." />
+  <button id="addBtn">Hinzufügen</button>
+  <ul id="todos"></ul>
+
+  <script>
+    const input = document.getElementById('todoInput');
+    const btn = document.getElementById('addBtn');
+    const list = document.getElementById('todos');
+
+    function addTodo() {
+      const value = input.value.trim();
+      if (!value) return;
+      const li = document.createElement('li');
+      li.textContent = value;
+      list.appendChild(li);
+      input.value = '';
+      input.focus();
+    }
+
+    btn.addEventListener('click', addTodo);
+    input.addEventListener('keydown', (e) => { if (e.key === 'Enter') addTodo(); });
+  </script>
+</body>
+</html>
